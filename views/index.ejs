@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple CRUD Web Application</title>
+</head>
+<body>
+  <h1>Simple CRUD Web Application</h1>
+
+  <!-- Form for adding new items -->
+  <h2>Add Item</h2>
+  <form action="/add" method="post">
+    <label for="itemName">Item Name:</label>
+    <input type="text" id="itemName" name="itemName" required>
+    <button type="submit">Add Item</button>
+  </form>
+
+  <!-- Table to display existing items -->
+  <h2>Items List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.forEach(item => { %>
+        <tr>
+          <td><%= item.name %></td>
+          <td>
+            <form action="/delete/<%= item.id %>" method="post">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>
